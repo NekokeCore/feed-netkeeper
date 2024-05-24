@@ -13,8 +13,8 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/netkeeper
-	SECTION:=utils
-	CATEGORY:=Utilities
+	SECTION:=net
+	CATEGORY:=Network
 	TITLE:=Netkeeper
 	DEPENDS:=+ppp-mod-pppoe
 endef
