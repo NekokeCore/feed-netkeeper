@@ -3,7 +3,7 @@ local p = "netkeeper"
 local proto = netmod:register_protocol(p)
 
 function proto.get_i18n(self)
-		return luci.i18n.translate("Netkeeper")
+	return luci.i18n.translate("Netkeeper")
 end
 
 function proto.ifname(self)
@@ -11,11 +11,15 @@ function proto.ifname(self)
 end
 
 function proto.opkg_package(self)
-		return "netkeeper"
+	return "netkeeper"
 end
 
 function proto.is_installed(self)
+	if io.open("/usr/lib/pppd/*/rp-pppoe.so", "r") then
 		return (nixio.fs.glob("/usr/lib/pppd/*/rp-pppoe.so")() ~= nil)
+	else
+		return (nixio.fs.glob("/usr/lib/pppd/*/pppoe.so")() ~= nil)
+	end
 end
 
 function proto.is_floating(self)
