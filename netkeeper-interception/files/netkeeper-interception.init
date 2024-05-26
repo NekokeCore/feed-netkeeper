@@ -1,6 +1,6 @@
 #!/bin/sh /etc/rc.common
 
-START=60
+START=99
 
 USE_PROCD=1
 
@@ -21,7 +21,6 @@ start_interception() {
 	#	procd_set_param respawn 
 		procd_set_param file /etc/netkeeper-interception/pppoe-server-options
 		procd_set_param pidfile $SERVICE_PID_FILE
-		procd_close_instance
 	else
 		#disabled
 		if [ -f /tmp/Last_AuthReq ]; then
@@ -55,4 +54,9 @@ start_service() {
 stop_service() {
 	service_stop "$PPPOE_SERVER_EXEC"
 	rm -f $SERVICE_PID_FILE
+}
+
+service_triggers()
+{
+	procd_add_reload_trigger "netkeeper-interception"
 }
