@@ -21,6 +21,7 @@ start_interception() {
 	#	procd_set_param respawn 
 		procd_set_param file /etc/netkeeper-interception/pppoe-server-options
 		procd_set_param pidfile $SERVICE_PID_FILE
+		procd_close_instance
 	else
 		#disabled
 		if [ -f /tmp/Last_AuthReq ]; then
