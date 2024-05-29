@@ -2,6 +2,13 @@
 
 [ -x /usr/sbin/pppd ] || exit 0
 
+
+if [ -f "/usr/lib/pppd/*/rp-pppoe.so" ];then
+    nk_pppoe_plugin="rp-pppoe.so"
+else
+    nk_pppoe_plugin="pppoe.so"
+fi
+
 [ -n "$INCLUDE_ONLY" ] || {
 	. /lib/functions.sh
 	. /lib/functions/network.sh
@@ -209,7 +216,7 @@ proto_netkeeper_setup() {
 	json_get_var padi_timeout padi_timeout
 
 	ppp_generic_setup "$config" \
-		plugin rp-pppoe.so \
+		plugin $nk_pppoe_plugin \
 		${ac:+rp_pppoe_ac "$ac"} \
 		${service:+rp_pppoe_service "$service"} \
 		${host_uniq:+host-uniq "$host_uniq"} \
@@ -223,6 +230,5 @@ proto_netkeeper_teardown() {
 }
 
 [ -n "$INCLUDE_ONLY" ] || {
-	[ -f /usr/lib/pppd/*/rp-pppoe.so ] && add_protocol netkeeper
+	[ -f /usr/lib/pppd/*/$nk_pppoe_plugin ] && add_protocol netkeeper
 }
-
