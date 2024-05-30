@@ -2,7 +2,7 @@
 # LIC: GPL
 require-pap
 login
-lcp-echo-interval 864
-lcp-echo-failure 100
+lcp-echo-interval 10
+lcp-echo-failure 2
 mru 1492
 mtu 1492
