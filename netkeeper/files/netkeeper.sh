@@ -130,13 +130,13 @@ ppp_generic_setup() {
 		}
 	}
 
-	[ -n "$keepalive" ] || keepalive="5 1"
+	[ -n "$keepalive" ] || keepalive="10 60"
 
 	local lcp_failure="${keepalive%%[, ]*}"
 	local lcp_interval="${keepalive##*[, ]}"
 	local lcp_adaptive="lcp-echo-adaptive"
 	[ "${lcp_failure:-0}" -lt 1 ] && lcp_failure=""
-	[ "$lcp_interval" != "$keepalive" ] || lcp_interval=5
+	[ "$lcp_interval" != "$keepalive" ] || lcp_interval=60
 	[ "${keepalive_adaptive:-1}" -lt 1 ] && lcp_adaptive=""
 	[ -n "$connect" ] || json_get_var connect connect
 	[ -n "$disconnect" ] || json_get_var disconnect disconnect
