@@ -45,6 +45,7 @@ define Package/netkeeper-interception/install
 	$(INSTALL_BIN) ./files/netkeeper-interception.init $(1)/etc/init.d/netkeeper-interception
 	$(INSTALL_DIR) $(1)/etc/netkeeper-interception
 	$(INSTALL_CONF) ./files/etc/netkeeper-interception/pppoe-server-options $(1)/etc/netkeeper-interception/pppoe-server-options
+	$(INSTALL_CONF) ./files/etc/netkeeper-interception/pppoe-client-options $(1)/etc/ppp/options
 	$(shell) echo $(PLUGIN_PATH) >> $(1)/etc/netkeeper-interception/pppoe-server-options
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_CONF) ./files/etc/config/netkeeper-interception $(1)/etc/config/netkeeper-interception

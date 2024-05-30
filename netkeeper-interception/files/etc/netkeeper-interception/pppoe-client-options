@@ -1,0 +1,12 @@
+# PPP options for the PPPoE client
+# LIC: GPL
+#debug
+logfile /dev/null
+noipdefault
+noaccomp
+nopcomp
+nocrtscts
+lock
+maxfail 0
+lcp-echo-failure 10
+lcp-echo-interval 60
